@@ -30,7 +30,3 @@ for game in inputInLines:
     gamePowerSum += maxGameValues['red'] * maxGameValues['green'] * maxGameValues['blue']
 
 print(gamePowerSum)
-
-
-
-    

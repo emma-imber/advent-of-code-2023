@@ -31,7 +31,3 @@ for game in inputInLines:
         possibleGameIdSum += int(gameId)
 
 print(possibleGameIdSum)
-
-
-
-    
