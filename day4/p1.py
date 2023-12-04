@@ -7,9 +7,6 @@ for line in lines:
     numbersWeHave = cardNumbers[1].split(' ')
     cleanedWinningNumbers = [item for item in winningNumbers if item != '']
     cleanedNumbersWeHave = [item for item in numbersWeHave if item != '']
-
-    print(cleanedWinningNumbers)
-    print(cleanedNumbersWeHave)
     
     numberOfWins = 0
     for number in cleanedNumbersWeHave:
