@@ -21,8 +21,6 @@ for lineIndex, line in enumerate(lines):
         for x in range(numberOfWins):
             timesToPlayEachCard[lineIndex + x + 1] += 1
 
-    
-
 totalCards = 0
 for card in timesToPlayEachCard:
     totalCards += timesToPlayEachCard[card]
