@@ -5,6 +5,9 @@ length = len(lines)
 width = len(lines[0].rstrip())
 partsNumberTotal = 0
 validPartNumberIndexes = {}
+#have to use a unique id to handle case where two parts numbers on a gear
+# have the same value, and using the set removes one number
+uniqueId = 1
 
 for lineIndex, line in enumerate(lines):
     partNumbers = re.finditer(r'\d+', line)
@@ -39,11 +42,14 @@ for lineIndex, line in enumerate(lines):
             if value != '.' and not value.isdigit():
                 isValidPartNumber = True
                 for charIndex, char in enumerate(num.group()):
-                    validPartNumberIndexes[str(lineIndex) + ' ' + str(num.start()+ charIndex)] = int(num.group())
+                    validPartNumberIndexes[str(lineIndex) + ' ' + str(num.start()+ charIndex)] = num.group() + ' ' + str(uniqueId)
         
         if isValidPartNumber:
             partsNumberTotal += int(num.group())
+    
+    uniqueId += 1
 
+print(validPartNumberIndexes)
 
 print("Part number total: " + str(partsNumberTotal))
 
@@ -68,12 +74,13 @@ for part2LineIndex, part2Line in enumerate(lines):
                     adjacentPartNumbers.append(validPartNumberIndexes[position])
             
             setOfAdjacentPartNumbers = set(adjacentPartNumbers)
+
+            print(setOfAdjacentPartNumbers)
             
             if len(setOfAdjacentPartNumbers) == 2:
                 partNums = list(setOfAdjacentPartNumbers)
-                gearRatio = partNums[0] * partNums[1]
+                #here we remove the unique id
+                gearRatio = int(partNums[0].split(' ')[0]) * int(partNums[1].split(' ')[0])
                 totalOfGearRatios += gearRatio
             
-#doesn't work, need to troubleshoot
-
 print("Total of gear ratios: " + str(totalOfGearRatios))        
