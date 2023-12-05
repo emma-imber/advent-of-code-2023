@@ -1,6 +1,4 @@
 import re
-import time
-start_time = time.time()
 
 data = open('input.txt').read()
 sections = data.split("\n\n")
@@ -42,4 +40,3 @@ for section in sections:
 
 smallestLocation = min(seeds)
 print(smallestLocation)
-print("--- %s seconds ---" % (time.time() - start_time))
