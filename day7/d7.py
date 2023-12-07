@@ -2,7 +2,7 @@ from collections import Counter
 from functools import cmp_to_key
 
 cardHierarchy = {
-    #port part 2 change value of J
+    # for part 2 change value of J
     'A': 13,
     'K': 12,
     'Q': 11,
