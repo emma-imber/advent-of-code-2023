@@ -17,7 +17,7 @@ pipeCharacters = {
     'J': ['up', 'left'],
     'F': ['down', 'right'],
     '7': ['down', 'left'],
-    # I manually check what the valid options for S were because life is too short
+    # I manually checked what the valid options for S were because life is too short
     'S': ['up', 'down']
 }
 
