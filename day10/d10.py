@@ -58,3 +58,52 @@ def breadthFirstSearch(visited, graph, node):
 breadthFirstSearch(visited, graph, sLocation)
 
 print(max(visited.values()))
+
+# part 2
+
+cleanedPipeSystem = []
+# reassign pipes that aren't in the loop
+for yCoord, row in enumerate(pipeSystem):
+    cleanedRow = []
+    for xCoord, character in enumerate(row):
+        if str(xCoord) + ' ' + str(yCoord) not in visited:
+            cleanedRow.append('.')
+        else:
+            cleanedRow.append(character)
+    cleanedPipeSystem.append(cleanedRow)
+
+outside = []
+for yCoord, row in enumerate(cleanedPipeSystem):
+    inPipe = False
+    prevCorner = ''
+    for xCoord, character in enumerate(row):
+        if character == '|' or character == 'S':
+            # means we've crossed
+            inPipe = not inPipe
+        # if you see an L then a J, you're not crossing
+        # but if you see an L then a 7, you are
+        elif character == 'L':
+            prevCorner = 'L'
+        elif character == 'F':
+            prevCorner = 'F'
+        elif character == 'J':
+            if prevCorner == 'F':
+                inPipe = not inPipe
+        elif character == '7':
+            if prevCorner == 'L':
+                inPipe = not inPipe
+        if not inPipe:
+            outside.append(str(xCoord) + ' ' + str(yCoord))
+
+totalInside = 0   
+for yCoord, row in enumerate(cleanedPipeSystem):
+    for xCoord, character in enumerate(row):
+        isInside = True
+        if str(xCoord) + ' ' + str(yCoord) in visited:
+            isInside = False
+        elif str(xCoord) + ' ' + str(yCoord) in outside:
+            isInside = False
+        if isInside:
+            totalInside += 1
+
+print(totalInside)
